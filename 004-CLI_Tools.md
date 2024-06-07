@@ -12,7 +12,7 @@ flask --help
 
 Example output:
 
-```sh
+```console
 Usage: flask [OPTIONS] COMMAND [ARGS]...
 
   This shell command acts as a general utility script for Flask applications.
@@ -50,7 +50,7 @@ flask db --help
 
 Example output:
 
-```sh
+```console
 Usage: flask db [OPTIONS] COMMAND [ARGS]...
 
   Perform database migrations.
@@ -81,7 +81,7 @@ Commands:
 Runs a development server:
 
 ```sh
-$ flask run
+flask run
 ```
 
 ### `shell`
@@ -89,7 +89,7 @@ $ flask run
 Opens a Python shell session in the application context:
 
 ```sh
-$ flask shell
+flask shell
 ```
 
 ### `db`
@@ -97,7 +97,7 @@ $ flask shell
 Performs database migrations. For example, to initialize a new migration repository:
 
 ```sh
-$ flask db init
+flask db init
 ```
 
 You are now ready to add code and extend your application. The Flask CLI provides a powerful set of tools to streamline development and manage your Flask projects efficiently.
