@@ -10,14 +10,20 @@ Flask applications can be executed in debug mode, which enables the reloader and
 To enable debug mode, set the `FLASK_DEBUG` flag to 1 before running the application.
 
 ```sh
-(venv) $ export FLASK_APP=hello.py
-(venv) $ export FLASK_DEBUG=1
-(venv) $ flask run
+export FLASK_APP=hello.py
+```
+
+```sh
+export FLASK_DEBUG=1
+```
+
+```sh
+flask run
 ```
 
 When you run the application, you should see output similar to this:
 
-```sh
+```console
 (venv) ***@***:~/Workspace/flasky$ flask run
  * Serving Flask app 'hello.py'
  * Debug mode: on

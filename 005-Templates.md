@@ -89,31 +89,17 @@ bootstrap = Bootstrap(app)
 For flexibility, Bootstrap-Flask doesn’t include built-in base templates (this may change in the future). For now, you have to create a base template yourself. Be sure to use an HTML5 doctype and include a viewport meta tag for proper responsive behaviors. Here’s an example base template:
 
 ```html
-<!doctype html>
-<html lang="en">
-    <head>
-        {% block head %}
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        {% block styles %}
-            <!-- Bootstrap CSS -->
-            {{ bootstrap.load_css() }}
+{% extends "bootstrap/base.html" %}
+    <title>{% block title %}My Application{% endblock %}</title>
+    {{ bootstrap.load_css() }}
+    {{ bootstrap.load_js() }}
+</head>
+<body>
+    <div class="container">
+        {% block content %}
         {% endblock %}
-
-        <title>Your page title</title>
-        {% endblock %}
-    </head>
-    <body>
-        <!-- Your page content -->
-        {% block content %}{% endblock %}
-
-        {% block scripts %}
-            <!-- Optional JavaScript -->
-            {{ bootstrap.load_js() }}
-        {% endblock %}
-    </body>
+    </div>
+</body>
 </html>
 ```
 
@@ -128,5 +114,14 @@ You can customize your error pages by adding the following to your code:
 def page_not_found(e):
     return render_template('404.html'), 404
 ```
+
+An example 404.html looks like this
+
+´´´html
+{% extends "base.html" %}
+{% block content %}
+<h1 class="alert alert-danger text-center">Sorry, cannot find your page (404)</h1>
+{% endblock %}
+´´´
 
 This concludes the introduction to templates with Jinja2 and Bootstrap. You are now ready to move on to web forms.
