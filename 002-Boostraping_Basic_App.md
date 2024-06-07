@@ -4,7 +4,7 @@ In this guide, we'll learn how to create and run a basic Flask application with 
 
 ## 1. Create an Application Instance
 
-Every Flask application needs an application instance. This instance is an object of the Flask class, which you can create as follows:
+Every Flask application needs an application instance. This instance is an object of the Flask class, which you can create as follows. Create a file called hello.py in your root directory and add:
 
 ```python
 from flask import Flask
@@ -20,7 +20,7 @@ The most convenient way to declare a new route is by using the `@app.route` deco
 ```python
 @app.route('/')
 def index():
-    return '<h1>Hello Flask, hello world!</h1>'
+    return '<h1>Hello Flask World!</h1>'
 ```
 
 > Alternatively, you can declare a route using `app.add_url_rule('/', 'index', index)`, where `/` is the URL, `'index'` is the endpoint name, and `index` is the view function.
@@ -36,7 +36,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Hello Flask'
+    return 'Hello Flask World!'
 ```
 
 ## 4. Run the Application in a Development Web Server
@@ -44,8 +44,12 @@ def index():
 To run your application, use the following commands in your terminal:
 
 ```sh
-(venv) $ export FLASK_APP=hello.py  # Replace 'hello.py' with the name of your script file
-(venv) $ flask run
+export FLASK_APP=hello.py
+```
+followed by
+
+```sh
+flask run
 ```
 
 You should see output similar to this:
@@ -57,5 +61,6 @@ WARNING: This is a development server. Do not use it in a production deployment.
 * Running on http://127.0.0.1:5000
 Press CTRL+C to quit
 ```
+Go to http://127.0.0.1:5000 and check if your app is working.
 
 You are now ready to start working on your Flask application.
