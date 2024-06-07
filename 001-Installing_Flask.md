@@ -43,8 +43,8 @@ $ source venv/bin/activate
 ```
 From now on, you will now see the venv name in your prompt:
 
-```sh
-(venv) $
+```console
+(venv) ***@laptop:~/Workspace/flasky$
 ```
 
 When a virtual environment is activated, its local Python interpreter location is added to the PATH variable. When you're done working with your virtual environment, type `deactivate` to restore the PATH value. Otherwise your venv will stop automatically when you close the console.
@@ -55,7 +55,7 @@ When a virtual environment is activated, its local Python interpreter location i
 $ pip install flask
 ```
 
-```sh
+```console
 Collecting flask
   Using cached flask-3.0.3-py3-none-any.whl (101 kB)
 Collecting Jinja2>=3.1.2
@@ -72,7 +72,7 @@ Collecting MarkupSafe>=2.0
   Using cached MarkupSafe-2.1.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
 Installing collected packages: MarkupSafe, itsdangerous, click, blinker, Werkzeug, Jinja2, flask
 Successfully installed Jinja2-3.1.4 MarkupSafe-2.1.5 Werkzeug-3.0.3 blinker-1.8.2 click-8.1.7 flask-3.0.3 itsdangerous-2.2.0
-``
+```
 
 ## 5. Check Installation and Dependency Versions
 
@@ -81,7 +81,7 @@ $ pip freeze
 ```
 You should see something like:
 
-```sh
+```console
 blinker==1.8.2
 click==8.1.7
 Flask==3.0.3
