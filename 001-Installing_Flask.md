@@ -11,8 +11,7 @@ Flask has three primary dependencies: routing, debugging, and the Web Server Gat
 
 Create an empty directory:
 ```sh
-$ mkdir flasky
-$ cd flasky
+mkdir flasky && cd flasky
 ```
 
 ## 2. Create a Virtual Environment
@@ -22,13 +21,13 @@ The `venv` package required for the next step is not included by default in Linu
 To install the `venv` package:
 
 ```sh
-$ sudo apt-get install python3-venv
+sudo apt-get install python3-venv
 ```
 
 To create a virtual environment, type:
 
 ```sh
-$ python3 -m venv venv
+python3 -m venv venv
 ```
 > Our virtual environment is called "venv" and it is installed in our app root directory
 
@@ -39,7 +38,7 @@ If successfully created, you should see the "venv" directory inside your working
 To activate the virtual environment:
 
 ```sh
-$ source venv/bin/activate
+source venv/bin/activate
 ```
 From now on, you will now see the venv name in your prompt:
 
@@ -52,7 +51,7 @@ When a virtual environment is activated, its local Python interpreter location i
 ## 4. Install Flask
 
 ```sh
-$ pip install flask
+pip install flask
 ```
 
 ```console
@@ -77,7 +76,7 @@ Successfully installed Jinja2-3.1.4 MarkupSafe-2.1.5 Werkzeug-3.0.3 blinker-1.8.
 ## 5. Check Installation and Dependency Versions
 
 ```sh
-$ pip freeze
+pip freeze
 ```
 You should see something like:
 
