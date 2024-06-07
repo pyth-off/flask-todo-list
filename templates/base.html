@@ -1,0 +1,12 @@
+{% extends "bootstrap/base.html" %}
+<title>{% block title %}My Application{% endblock %}</title>
+{{ bootstrap.load_css() }}
+{{ bootstrap.load_js() }}
+</head>
+<body>
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
