@@ -1,0 +1,33 @@
+{% include 'header.html' %}
+<body>
+<!-- Navigation-->
+{% include 'nav.html' %}
+<!-- Masthead-->
+<div class="container">
+    {% block login %}
+    <form method="POST">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th scope="row">{{ form.csrf_token }} {{form.email.label}}</th>
+                    <td>{{form.email()}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">{{form.password.label}}</th>
+                    <td>{{form.password()}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">{{form.submit()}}</td>
+                </tr>
+                </tbody>
+        </table>
+    </form>
+    {% endblock %}
+    {% block flashed %}
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">{{message}}</div>
+    {% endfor %}
+    {% endblock %}
+</div>
+<!-- Footer-->
+{% include 'footer.html' %}

@@ -1,1 +1,17 @@
-<h1>Hello Flask World!</h1>
+{% include 'header.html' %}
+<body>
+<!-- Navigation-->
+{% include 'nav.html' %}
+<!-- Masthead-->
+<div class="container">
+    {% block content %}
+    <h1 class="mb-5">{{msg}}</h1>
+    {% endblock %}
+{% block flashed %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">{{message}}</div>
+{% endfor %}
+{% endblock %}
+</div>
+<!-- Footer-->
+{% include 'footer.html' %}

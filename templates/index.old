@@ -1,0 +1,10 @@
+{% include 'header.html' %}
+<body>
+<div class="container">
+    {% block content %}
+    <h1 class="alert alert-danger">Hello Flasky Motherfuckers!</h1>
+    {% endblock %}
+</div>
+{% include 'footer.html' %}
+</body>
+</html>
