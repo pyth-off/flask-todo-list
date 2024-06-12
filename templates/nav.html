@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="#!">{{title|title}}</a>
         {% if ('started' not in session or not session.started) %}
-        {% if '/login' != url_for(request.endpoint) %}
+        {% if request.endpoint and '/login' != url_for(request.endpoint) and '/' != url_for(request.endpoint) %}
         <a class="btn btn-success" href="{{url_for('login')}}">Login</a>
         {% endif %}
         {% else %}

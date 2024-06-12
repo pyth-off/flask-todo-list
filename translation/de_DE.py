@@ -1,0 +1,13 @@
+t = {}
+t['404 Not Found'] = '404 Seite nicht gefunden'
+t['500 Internal Server Error'] = '500 Serverfehler'
+t['About'] = 'Über'
+t['All rights reserved'] = 'Alle Rechte vorbehalten'
+t['Back'] = 'Züruck'
+t['Contact'] = 'Kontakt'
+t['Logged in successfully as {}'] = 'Erfolgreich als {} abgemeldet'
+t['Please log in'] = 'Bitte melde dich an'
+t['Terms Of Use'] = 'Nutzungsbedingungen'
+t['This is my page title'] = 'Das ist mein Titel'
+t['Wrong Email Or Password'] = 'Falsches Benutzername oder Passwort'
+t['Your session has expired'] = 'Deine Sitzung ist abgelaufen'
