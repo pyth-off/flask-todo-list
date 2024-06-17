@@ -5,6 +5,7 @@ from flask_bootstrap import Bootstrap
 from flask_font_awesome import FontAwesome
 import os
 from flask_sqlalchemy import SQLAlchemy
+
 # My Modules
 from forms.login import LoginForm
 from session.session import session_is_valid, session_destroy, session_start
@@ -27,20 +28,75 @@ app.config['SQLALCHEMY_DATABASE_URI'] = path
 db = SQLAlchemy(app)
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+def check_session():
     if not session_is_valid():
         flash(translate('Your session has expired', session['locale'] if 'locale' in session else app.config['locale']))
         session_destroy()
-        return redirect(url_for('login'))
+        return False
 
-    # Find and display lists for the given user
-    title = translate('This is my page title', session['locale'])
     if 'started' not in session or not session['started']:
         flash(translate('Please log in', app.config['locale']))
-        return redirect(url_for('login'))
+        return False
 
-    return render_template('index.html', title=title, locale=session['locale'])
+    return True
+
+
+@app.route('/create_list', methods=['GET', 'POST'])
+def create_list():
+    return False
+
+
+@app.route('/display_list/<list_id>', methods=['GET', 'POST'])
+def display_list(list_id):
+    from list.model import find_by_id
+    list = find_by_id(list_id)
+    from list_item.model import find_by_list_id
+    items = find_by_list_id(list_id)
+    return render_template('display_list.html', items=items, list_id=list_id, list=list, locale=session['locale'])
+
+
+@app.route('/edit_list/<list_id>', methods=['GET', 'POST'])
+def edit_list(list_id):
+    from forms.list import ListForm
+    from list.model import find_by_id
+    list = find_by_id(list_id)
+    form = ListForm()
+
+    if form.validate_on_submit():
+        try:
+            list.name = form.name.data
+            db.session.commit()
+            flash(translate("List '{}' renamed to '{}'", session['locale']).format(list_id, list.name))
+            return redirect(url_for('index'))
+        except Exception as e:
+            return server_error(e)
+
+    # Populate the name field in the form
+    form.name.data = list.name
+    return render_template('edit_list.html', form=form, list_id=list_id)
+
+
+@app.route('/delete_list/<list_id>', methods=['GET', 'POST'])
+def delete_list(list_id):
+    return False
+
+
+@app.route('/create_list_item/<list_id>', methods=['GET', 'POST'])
+def create_list_item(list_id):
+    return False
+
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    title = translate('Hello, {}'.format(session['user']['name']), session['locale'])
+    if not check_session():
+        return redirect(url_for('login'))
+    # Find and display lists for the given user
+    from list.model import find_by_user_id
+    from list_item.model import get_item_count
+    app.jinja_env.globals.update(get_item_count=get_item_count)
+    return render_template('index.html', title=title, locale=session['locale'],
+                           lists=find_by_user_id(session['user']['id']))
 
 
 @app.route('/logout')
@@ -76,7 +132,7 @@ def page_not_found(e):
 
 
 @app.errorhandler(500)
-def page_not_found(e):
+def server_error(e):
     return render_template('500.html',
                            head=translate('500 Server Error',
                                           session['locale'] if 'locale' in session else app.config['locale']),

@@ -5,13 +5,41 @@
 <!-- Masthead-->
 <div class="container">
     {% block content %}
-    <h1 class="mb-5">{{msg}}</h1>
+    <a class="alert alert-success" href="{{url_for('create_list')}}">{{translate('Create New List', locale)}}</a>
+    {% if lists%}
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Items</th>
+            <th scope="col">Created</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for list in lists %}
+        <tr>
+            <th scope="row">{{list['id']}}</th>
+            <td>{{list['name']}}</td>
+            <td>{{get_item_count(list_id)}}</td>
+            <td>{{list['created']}}</td>
+            <td><a href="{{url_for('display_list', list_id=list['id'])}}">Display</a>
+                <a href="{{url_for('edit_list', list_id=list['id'])}}">Edit</a>
+                <a href="{{url_for('delete_list', list_id=list['id'])}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h1>{{translate('There are no lists', locale)}}</h1>
+    {% endif %}
     {% endblock %}
-{% block flashed %}
-{% for message in get_flashed_messages() %}
-<div class="alert alert-warning">{{message}}</div>
-{% endfor %}
-{% endblock %}
+    {% block flashed %}
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">{{message}}</div>
+    {% endfor %}
+    {% endblock %}
 </div>
 <!-- Footer-->
 {% include 'footer.html' %}

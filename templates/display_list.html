@@ -4,26 +4,40 @@
 {% include 'nav.html' %}
 <!-- Masthead-->
 <div class="container">
-    {% block login %}
-    <form method="POST" action="{{url_for('edit_list', list_id=list_id)}}">
-            <table class="table">
-                <thead>
-    <tr>
-      <th scope="col" colspan="2">Edit List '{{list_id}}'</th>
-    </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">{{ form.csrf_token }} {{form.name.label}}</th>
-                    <td>{{form.name()}}</td>
-                </tr>
-                <tr>
-                 <tr>
-                    <td colspan="2">{{form.submit()}}</td>
-                </tr>
-                </tbody>
-        </table>
-    </form>
+    {% block content %}
+    {% if items%}
+    <table class="table">
+        <thead class="thead-dark">
+        <tr><td colspan="5"><h1>{{list['name']}} ({{items|count}} tasks)</h1></td></tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Text</th>
+            <th scope="col">Priority</th>
+            <th scope="col">LastMod</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+        <tr>
+            <th scope="row">{{item['id']}}</th>
+            <td>{{item['text']}}</td>
+             <td>{{item['prio']}}</td>
+             <td>{{item['updated']}}</td>
+            <td><a href="{{url_for('display_list', list_id=list['id'])}}">Mark Done</a>
+                <a href="{{url_for('edit_list', list_id=list['id'])}}">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr><td colspan="5"><a class="btn btn-success" href="{{url_for('create_list_item', list_id=list_id)}}">{{translate('Create
+                New Item', locale)}}</a></td></tr>
+        </tfoot>
+    </table>
+    {% else %}
+    <h1>{{translate('There are no items for list "{}"', locale).format(list.name)}}</h1>
+    {% endif %}
     {% endblock %}
     {% block flashed %}
     {% for message in get_flashed_messages() %}

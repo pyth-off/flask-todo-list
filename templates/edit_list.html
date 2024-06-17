@@ -5,20 +5,17 @@
 <!-- Masthead-->
 <div class="container">
     {% block login %}
-    <form method="POST">
+    <form method="POST" action="{{url_for('edit_list', list_id=list_id)}}">
             <table class="table">
+                <thead>
+    <tr>
+      <th scope="col" colspan="2">Edit List '{{list_id}}'</th>
+    </tr>
+                </thead>
                 <tbody>
                 <tr>
-                    <th scope="row">{{ form.csrf_token }} {{form.email.label}}</th>
-                    <td>{{form.email()}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">{{form.password.label}}</th>
-                    <td>{{form.password()}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">{{form.locale.label}}</th>
-                    <td>{{form.locale()}}</td>
+                    <th scope="row">{{ form.csrf_token }} {{form.name.label}}</th>
+                    <td>{{form.name()}}</td>
                 </tr>
                 <tr>
                  <tr>

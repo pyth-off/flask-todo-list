@@ -11,6 +11,7 @@ class User(db.Model):
     active = db.Column(db.Boolean(), default=True)
     created = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated = db.Column(db.DateTime(timezone=True), default=None, nullable=True, onupdate=func.now())
+    # list = db.relationship('List', backref='id')
 
     def __repr__(self):
         return 'User Id:{} Name:{} Email:{}'.format(self.id, self.name, self.email)
@@ -18,7 +19,7 @@ class User(db.Model):
 
 def find_one_by_email(email):
     try:
-        return User.query.filter_by(email=email).first()
+        return User.query.filter_by(email=email, active=True).first()
     except Exception as e:
         print(repr(e))
 
