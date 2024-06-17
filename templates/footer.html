@@ -1,7 +1,21 @@
 <footer class="footer bg-light">
             <div class="container">
                 <div class="row">
+                      {% if locale %}
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!">{{translate('About', locale)}}</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">{{translate('Contact', locale)}}</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">{{translate('Terms Of Use', locale)}}</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">{{translate('Contact', locale)}}</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; {{title|title}} 2024. {{translate('All rights reserved', locale)}}.</p>
+                    </div>
+                    {% else %}
+                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
                             <li class="list-inline-item"><a href="#!">{{translate('About')}}</a></li>
                             <li class="list-inline-item">⋅</li>
@@ -13,6 +27,7 @@
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; {{title|title}} 2024. {{translate('All rights reserved')}}.</p>
                     </div>
+                    {% endif %}
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">

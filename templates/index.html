@@ -5,28 +5,27 @@
 <!-- Masthead-->
 <div class="container">
     {% block content %}
-    <a class="alert alert-success" href="{{url_for('create_list')}}">{{translate('Create New List', locale)}}</a>
     {% if lists%}
     <table class="table">
         <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Items</th>
-            <th scope="col">Created</th>
-            <th scope="col">Actions</th>
+            <th scope="col">{{translate('Name', locale)}}</th>
+            <th scope="col">{{translate('Items', locale)}}</th>
+            <th scope="col">{{translate('Created', locale)}}</th>
+            <th scope="col">{{translate('Actions', locale)}}</th>
         </tr>
         </thead>
         <tbody>
         {% for list in lists %}
         <tr>
             <th scope="row">{{list['id']}}</th>
-            <td>{{list['name']}}</td>
-            <td>{{get_item_count(list_id)}}</td>
+            <td><a href="{{url_for('list_display', list_id=list['id'])}}">{{list['name']}}</a></td>
+            <td>{{list_get_item_count(list['id'])}}</td>
             <td>{{list['created']}}</td>
-            <td><a href="{{url_for('display_list', list_id=list['id'])}}">Display</a>
-                <a href="{{url_for('edit_list', list_id=list['id'])}}">Edit</a>
-                <a href="{{url_for('delete_list', list_id=list['id'])}}">Delete</a></td>
+            <td>
+                <a href="{{url_for('list_edit', list_id=list['id'])}}"><i class="fa fa-edit" style="font-size:24px"></i></a>
+                <a href="{{url_for('list_delete', list_id=list['id'])}}"><i class="fa fa-trash" style="font-size:24px"></i></a></td>
         </tr>
         {% endfor %}
         </tbody>
@@ -40,6 +39,11 @@
     <div class="alert alert-warning">{{message}}</div>
     {% endfor %}
     {% endblock %}
+        <table>
+        <tr>
+            <td> <a class="btn btn-success" href="{{url_for('list_create')}}"><i class="fa fa-plus" style="font-size:24px"></i>&nbsp;{{translate('New List', locale)}}</a></td>
+        </tr>
+    </table>
 </div>
 <!-- Footer-->
 {% include 'footer.html' %}

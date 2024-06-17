@@ -5,11 +5,11 @@
 <!-- Masthead-->
 <div class="container">
     {% block login %}
-    <form method="POST" action="{{url_for('edit_list', list_id=list_id)}}">
+    <form method="POST" action="{{url_for('list_create')}}">
             <table class="table">
                 <thead>
     <tr>
-      <th scope="col" colspan="2">Edit List '{{list_id}}'</th>
+      <th scope="col" colspan="2">{{translate('New List', locale)}}</th>
     </tr>
                 </thead>
                 <tbody>

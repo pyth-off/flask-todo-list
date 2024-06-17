@@ -1,12 +1,26 @@
 <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-        <a class="navbar-brand" href="#!">{{title|title}}</a>
-        {% if ('started' not in session or not session.started) %}
-        {% if request.endpoint and '/login' != url_for(request.endpoint) and '/' != url_for(request.endpoint) %}
-        <a class="btn btn-success" href="{{url_for('login')}}">Login</a>
-        {% endif %}
-        {% else %}
-        <a class="btn btn-danger" href="{{url_for('logout')}}">Logout {{session.email}}</a>
-        {% endif %}
+        <table align="left">
+            <tbody>
+            <tr>
+                <td><a class="navbar-brand" href="#!">{{title|title}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <table align="right">
+            <tbody>
+            <tr>
+                <td></td>
+                {% if ('started' not in session or not session.started) %}
+                {% if request.endpoint and '/login' != url_for(request.endpoint) and '/' != url_for(request.endpoint) %}
+                <td align="right"><a class="btn btn-success" href="{{url_for('login')}}">Login</a></td>
+                {% endif %}
+                {% else %}
+                <td align="right"><a class="btn btn-warning" href="{{url_for('index')}}"><i class="fa fa-home" style="font-size:24px"></i></a></td>
+                <td align="right"><a class="btn btn-danger" href="{{url_for('logout')}}"><i class="fa fa-right-from-bracket" style="font-size:24px"></i></a></td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
     </div>
 </nav>

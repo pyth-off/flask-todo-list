@@ -11,6 +11,10 @@ def session_is_valid():
     return True
 
 
+def session_refresh():
+    session['start'] = time.time()
+
+
 def session_start(user, locale):
     """Starts session"""
     session['started'] = True
