@@ -1,0 +1,35 @@
+{% include 'header.html' %}
+<body>
+<!-- Navigation-->
+{% include 'nav.html' %}
+<!-- Masthead-->
+<div class="container">
+    {% block login %}
+    <form method="POST" action="{{url_for('edit_list', list_id=list_id)}}">
+            <table class="table">
+                <thead>
+    <tr>
+      <th scope="col" colspan="2">Edit List '{{list_id}}'</th>
+    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">{{ form.csrf_token }} {{form.name.label}}</th>
+                    <td>{{form.name()}}</td>
+                </tr>
+                <tr>
+                 <tr>
+                    <td colspan="2">{{form.submit()}}</td>
+                </tr>
+                </tbody>
+        </table>
+    </form>
+    {% endblock %}
+    {% block flashed %}
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">{{message}}</div>
+    {% endfor %}
+    {% endblock %}
+</div>
+<!-- Footer-->
+{% include 'footer.html' %}
