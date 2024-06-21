@@ -20,7 +20,7 @@ class ListItem(db.Model):
         return json.dumps({k: str(v) for k, v in self.__dict__.items()})
 
 
-def list_item_set_done(id):
+def set_done(id):
     list_item = ListItem.query.filter_by(id=id).first()
     list_item.done = True
     db.session.add(list_item)
@@ -28,7 +28,7 @@ def list_item_set_done(id):
     return id
 
 
-def list_item_create(list_id, text, prio):
+def create(list_id, text, prio):
     list_item = ListItem()
     list_item.list_id = list_id
     list_item.text = text
@@ -38,23 +38,23 @@ def list_item_create(list_id, text, prio):
     return list_item.id
 
 
-def list_get_item_count(list_id):
+def get_item_count(list_id):
     try:
-        return len(list_item_find_by_list_id(list_id))
+        return len(find_by_list_id(list_id))
     except Exception as e:
         print(repr(e))
 
 
-def list_item_find_by_list_id(list_id):
+def find_by_list_id(list_id):
     try:
         return ListItem.query.filter_by(list_id=list_id, done=False).order_by(asc(ListItem.prio)).all()
     except Exception as e:
         print(repr(e))
 
 
-def list_item_fix_priorities(list_id):
+def reset_priorities(list_id):
     new_prio = 0
-    for item in list_item_find_by_list_id(list_id):
+    for item in find_by_list_id(list_id):
         item.prio = new_prio
         db.session.add(item)
         db.session.commit()

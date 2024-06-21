@@ -20,12 +20,12 @@
         {% for list in lists %}
         <tr>
             <th scope="row">{{list['id']}}</th>
-            <td><a href="{{url_for('list_display', list_id=list['id'])}}">{{list['name']}}</a></td>
+            <td><a href="{{url_for('main.list_display', list_id=list['id'])}}">{{list['name']}}</a></td>
             <td>{{list_get_item_count(list['id'])}}</td>
             <td>{{list['created']}}</td>
             <td>
-                <a href="{{url_for('list_edit', list_id=list['id'])}}"><i class="fa fa-edit" style="font-size:24px"></i></a>
-                <a href="{{url_for('list_delete', list_id=list['id'])}}"><i class="fa fa-trash" style="font-size:24px"></i></a></td>
+                <a href="{{url_for('main.list_edit', list_id=list['id'])}}"><i class="fa fa-edit" style="font-size:24px"></i></a>
+                <a href="{{url_for('main.list_delete', list_id=list['id'])}}"><i class="fa fa-trash" style="font-size:24px"></i></a></td>
         </tr>
         {% endfor %}
         </tbody>
@@ -41,7 +41,7 @@
     {% endblock %}
         <table>
         <tr>
-            <td> <a class="btn btn-success" href="{{url_for('list_create')}}"><i class="fa fa-plus" style="font-size:24px"></i>&nbsp;{{translate('New List', locale)}}</a></td>
+            <td> <a class="btn btn-success" href="{{url_for('main.list_create')}}"><i class="fa fa-plus" style="font-size:24px"></i>&nbsp;{{translate('New List', locale)}}</a></td>
         </tr>
     </table>
 </div>

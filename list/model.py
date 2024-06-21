@@ -18,13 +18,13 @@ class List(db.Model):
         return json.dumps({k: str(v) for k, v in self.__dict__.items()})
 
 
-def list_delete(id):
-    db.session.delete(list_find_by_id(id))
+def delete(id):
+    db.session.delete(find_by_id(id))
     db.session.commit()
     return id
 
 
-def list_create(name, user_id):
+def create(name, user_id):
     list = List()
     list.name = name
     list.user_id = user_id
@@ -33,14 +33,14 @@ def list_create(name, user_id):
     return list.id
 
 
-def list_find_by_id(list_id):
+def find_by_id(list_id):
     try:
         return List.query.filter_by(id=list_id, active=True).first()
     except Exception as e:
         print(repr(e))
 
 
-def list_find_by_user_id(user_id):
+def find_by_user_id(user_id):
     try:
         return List.query.filter_by(user_id=user_id).all()
     except Exception as e:

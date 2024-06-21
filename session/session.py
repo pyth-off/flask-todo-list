@@ -4,18 +4,18 @@ import time
 """Session related functions"""
 
 
-def session_is_valid():
+def is_valid():
     """Checks for session validity and expiration time"""
     if 'start' not in session or not session['start'] or (time.time() - session['start']) >= 600:
         return False
     return True
 
 
-def session_refresh():
+def refresh():
     session['start'] = time.time()
 
 
-def session_start(user, locale):
+def start(user, locale):
     """Starts session"""
     session['started'] = True
     session['start'] = time.time()
@@ -23,11 +23,11 @@ def session_start(user, locale):
     session['user']['id'] = user.id
     session['user']['name'] = user.name
     session['user']['email'] = user.email
-    session['locale'] = locale
+    session['APP_LOCALE'] = locale
     return True
 
 
-def session_destroy():
+def destroy():
     """Destroys the active session"""
     if 'started' in session:
         session.pop('started', None)
@@ -35,5 +35,5 @@ def session_destroy():
         session.pop('user', None)
     if 'start' in session:
         session.pop('start', None)
-    if 'locale' in session:
-        session.pop('locale', None)
+    if 'APP_LOCALE' in session:
+        session.pop('APP_LOCALE', None)

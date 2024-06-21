@@ -13,11 +13,11 @@
                 <td></td>
                 {% if ('started' not in session or not session.started) %}
                 {% if request.endpoint and '/login' != url_for(request.endpoint) and '/' != url_for(request.endpoint) %}
-                <td align="right"><a class="btn btn-success" href="{{url_for('login')}}">Login</a></td>
+                <td align="right"><a class="btn btn-success" href="{{url_for('main.login')}}">Login</a></td>
                 {% endif %}
                 {% else %}
-                <td align="right"><a class="btn btn-warning" href="{{url_for('index')}}"><i class="fa fa-home" style="font-size:24px"></i></a></td>
-                <td align="right"><a class="btn btn-danger" href="{{url_for('logout')}}"><i class="fa fa-right-from-bracket" style="font-size:24px"></i></a></td>
+                <td align="right"><a class="btn btn-warning" href="{{url_for('main.index')}}"><i class="fa fa-home" style="font-size:24px"></i></a></td>
+                <td align="right"><a class="btn btn-danger" href="{{url_for('main.logout')}}"><i class="fa fa-right-from-bracket" style="font-size:24px"></i></a></td>
                 {% endif %}
             </tr>
             </tbody>

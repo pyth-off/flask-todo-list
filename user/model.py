@@ -18,14 +18,14 @@ class User(db.Model):
         return json.dumps({k: str(v) for k, v in self.__dict__.items()})
 
 
-def user_find_one_by_email(email):
+def find_by_email(email):
     try:
         return User.query.filter_by(email=email, active=True).first()
     except Exception as e:
         print(repr(e))
 
 
-def user_login(username, password):
+def login(username, password):
     import hashlib
     user = User.query.filter_by(active=True, email=username, password=hashlib.sha3_512(password.encode('ascii')).hexdigest()).first()
     return False if user is None else True

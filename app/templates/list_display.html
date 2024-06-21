@@ -22,21 +22,21 @@
             <th scope="row">{{item['id']}}</th>
             <td>{{item['text']}}</td>
              <td>{{item['prio']}}</td>
-            <td><a href="{{url_for('list_item_set_done', item_list_id=item['id'],list_id=list['id'])}}"><i class="btn btn-success fa fa-check" style="font-size:24px"></i></a>
+            <td><a href="{{url_for('main.list_item_set_done', item_list_id=item['id'],list_id=list['id'])}}"><i class="btn btn-success fa fa-check" style="font-size:24px"></i></a>
             </td>
         </tr>
         {% endfor %}
         </tbody>
         <tfoot>
-        <tr><td colspan="5"><a class="btn btn-success" href="{{url_for('list_item_create', list_id=list['id'])}}">{{translate('New Task', locale)}}</a>
-            <a class="btn btn-warning" href="{{url_for('list_item_fix_priorities', list_id=list['id'])}}"><i class="fa fa-list" style="font-size:24px"></i> {{translate('Fix Priorities', locale)}}</a>
+        <tr><td colspan="5"><a class="btn btn-success" href="{{url_for('main.list_item_create', list_id=list['id'])}}">{{translate('New Task', locale)}}</a>
+            <a class="btn btn-warning" href="{{url_for('main.list_item_fix_priorities', list_id=list['id'])}}"><i class="fa fa-list" style="font-size:24px"></i> {{translate('Fix Priorities', locale)}}</a>
         </td>
         </tr>
         </tfoot>
     </table>
     {% else %}
     <h1>{{translate('No items for list "{}"', locale).format(list.name)}}</h1>
-    <a class="btn btn-success" href="{{url_for('list_item_create', list_id=list['id'])}}"><i class="fa fa-plus" style="font-size:24px"></i>  {{translate('New Task', locale)}}</a>
+    <a class="btn btn-success" href="{{url_for('main.list_item_create', list_id=list['id'])}}"><i class="fa fa-plus" style="font-size:24px"></i>  {{translate('New Task', locale)}}</a>
     {% endif %}
     {% endblock %}
     {% block flashed %}
